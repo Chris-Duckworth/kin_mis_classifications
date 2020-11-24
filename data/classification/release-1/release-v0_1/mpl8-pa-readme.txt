@@ -28,7 +28,7 @@ halpha_pa: numeric (0-360)
 kinematic position angle of the halpha velocity field (angle along which velocity change is greatest). 
 Defined by the angle to the redshifted side clockwise from the north axis.
 
-pa_offset: numeric (0-360)
+pa_offset: numeric (0-180)
 difference in position angle between stellar_pa and halpha_pa.
 
 stel_qual: int
