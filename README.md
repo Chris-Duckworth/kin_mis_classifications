@@ -1,3 +1,5 @@
+![velfields](./CNN/pre-processing/example_classified_maps.pdf)
+
 # kin_mis_classifications
 
 Galaxy position angle (PA) measurements and velocity field classifications ([MaNGA](https://www.sdss.org/surveys/manga/)).
