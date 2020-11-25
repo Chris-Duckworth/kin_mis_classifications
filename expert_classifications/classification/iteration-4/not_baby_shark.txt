@@ -1,0 +1,14 @@
+open 'https://www.youtube.com/watch?v=o4cq3MughKI'
+say -v 'Daniel' 'Baby shark, doo doo doo doo doo doo, Baby shark, doo doo doo doo doo doo, Baby shark, doo do doo doo doo doo, Baby shark!' -r 120
+say -v 'Veena' 'Mommy shark, doo doo doo doo doo doo, Mommy shark, doo doo doo doo doo doo, Mommy shark, doo doo doo doo doo doo, Mommy shark!' -r 120
+say -v 'Alex' 'Daddy shark, doo doo doo doo doo doo, Daddy shark, doo doo doo doo doo doo, Daddy shark, doo doo doo doo doo doo, Daddy shark!' -r 120
+say -v 'Serena' 'Grandma shark, doo doo doo doo doo doo, Grandma shark, doo doo doo doo doo doo, Grandma shark, doo doo doo doo doo doo, Grandma shark!' -r 120
+say -v 'Albert' 'Grandpa shark, doo doo doo doo doo doo, Grandpa shark, doo doo doo doo doo doo, Grandpa shark, doo doo doo doo doo doo, Grandpa shark!' -r 120
+
+say -v 'Daniel' 'All together now'
+
+say -v 'Daniel' 'It's the end, doo doo doo doo doo doo, It's the end, doo doo doo doo doo doo, It's the end, doo doo doo doo doo doo, It's the end!' -r 120 & 
+say -v 'Veena' 'It's the end, doo doo doo doo doo doo, It's the end, doo doo doo doo doo doo, It's the end, doo doo doo doo doo doo, It's the end!' -r 120 & 
+say -v 'Alex' 'It's the end, doo doo doo doo doo doo, It's the end, doo doo doo doo doo doo, It's the end, doo doo doo doo doo doo, It's the end!' -r 120 & 
+say -v 'Serena' 'It's the end, doo doo doo doo doo doo, It's the end, doo doo doo doo doo doo, It's the end, doo doo doo doo doo doo, It's the end!' -r 120 & 
+say -v 'Albert' 'It's the end, doo doo doo doo doo doo, It's the end, doo doo doo doo doo doo, It's the end, doo doo doo doo doo doo, It's the end!' -r 120 & 
