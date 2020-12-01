@@ -42,10 +42,14 @@ Both convolutional and fully-connected neural networks are implemented here with
 The second and third dense layers also have dropout (rate = 0.6) to prevent over-fitting, and the model is trained with an adaptive learning rate (η=0.001) that reduces on plateau (to a minimum of 0.00001) with an adam optimiser, for a total of 50 epochs. The model is trained with class weights due to the imbalance in unusable and usable classifications, and, augementation of the training data (random flips and rotations).
 
 ### Performance
-The tuned network has an 88.8% accuracy (when dividing at output = 0.5) which steadily increases to 100% when selecting the model's most confident predictions. Confusion matrices shown for splits with 50%, 80% and 99% confidence are shown below:
+The tuned network has an 88.8% accuracy (when dividing at output = 0.5) which steadily increases to 100% when selecting the model's most confident predictions. Confusion matrices shown for splits with 50%, 80% and 99% classification confidence are shown below:
 
 <p float="left">
-  <img src="./NN/final-model/confusion_0.5confidence.png" width="310" />
-  <img src="./NN/final-model/confusion_0.8confidence.png" width="310" /> 
-  <img src="./NN/final-model/confusion_0.99confidence.png" width="310" />
+  <img src="./NN/final-model/confusion_0.5confidence.png" width="250" />
+  <img src="./NN/final-model/confusion_0.8confidence.png" width="250" /> 
+  <img src="./NN/final-model/confusion_0.99confidence.png" width="250" />
 </p>
+
+The distribution of classification (i.e. 0-1 scale with softmax activation), the binary classifications are found from splitting at 0.5. 
+
+![class_distn](./NN/final-model/usability_histogram.png) 
