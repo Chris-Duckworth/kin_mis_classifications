@@ -6,6 +6,8 @@ Galaxy position angle (PA) measurements and velocity field classifications ([MaN
 
 This directory finds the PA (i.e. projected rotational direction) of stellar and ionized gas velocity fields for galaxies in MaNGA. Every velocity field for each galaxy (up-to the 8th MaNGA product launch; MPL-8) is given an expert classification (by eye) to determine its reliability/usability. This classification set is used to train a neural network (NN), for quick classifications of velocity fields in future data releases (and potentially future surveys).
 
+Note: Only data up-to MPL-7 is made available here (i.e. latest public SDSS [data release]). 
+
 ## Data
 
 Data is taken from the Data Analysis Pipeline ([DAP](https://www.sdss.org/dr15/manga/manga-analysis-pipeline/)) which provides stellar and (ionized) gas velocity fields. Velocity fields are found by fitting the stellar continuum and Hα spectral lines respectively. 
