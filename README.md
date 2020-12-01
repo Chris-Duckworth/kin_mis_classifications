@@ -22,7 +22,7 @@ Not all galaxies have well defined rotation (and hence PAs), so the quality/reli
 Full details on the position angle fitting and classifications are detailed in this [paper](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.1869D/).
 
 ## Neural Network Classifications
-With a large set of velocity fields and classifications, this is used to train a convolutional neural network (CNN). This can be used to quickly classify future galaxies in MaNGA. This may also be useful for classifying velocity fields in other surveys **but** further testing will need to be done (for example; MaNGA velocity fields tend to be hexagonal and classification biases may arise).
+With a large set of velocity fields and classifications, this is used to train a neural network (NN). This can be used to quickly classify future galaxies in MaNGA. This may also be useful for classifying velocity fields in other surveys **but** further testing will need to be done (for example; MaNGA velocity fields tend to be hexagonal and classification biases may arise).
 
 ### Pre-processing for NN
 Here, velocity fields are also taken from the DAP, however, they are now standardised to be (32, 32) in shape, and, the pixel values range [-1, 1]. Due to the variety of image resolutions in MaNGA (due to the different IFU sizes) we select all images to be set at the same lowest resolution. No other pre-processing is applied here. Examples of the NN input (with human classifications) can be seen above. Here we combine the 1 (messy) and 2 (clean) classifications into a single category as there can be significant mixing between the two. All NN classifications are therefore a binary usability flag (0; don't use, 1; use).
