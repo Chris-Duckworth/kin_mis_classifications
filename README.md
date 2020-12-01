@@ -4,7 +4,7 @@
 
 Galaxy position angle (PA) measurements and velocity field classifications ([MaNGA](https://www.sdss.org/surveys/manga/)).
 
-This directory finds the PA (i.e. projected rotational direction) of stellar and ionized gas velocity fields for galaxies in MaNGA. Every velocity field for each galaxy (up-to the 8th MaNGA product launch; MPL-8) is given an expert classification (by eye) to determine its reliability/usability. This classification set is used to train a convolutional neural network (CNN), for quick classifications of velocity fields in future data releases (and potentially future surveys).
+This directory finds the PA (i.e. projected rotational direction) of stellar and ionized gas velocity fields for galaxies in MaNGA. Every velocity field for each galaxy (up-to the 8th MaNGA product launch; MPL-8) is given an expert classification (by eye) to determine its reliability/usability. This classification set is used to train a neural network (NN), for quick classifications of velocity fields in future data releases (and potentially future surveys).
 
 ## Data
 
@@ -24,8 +24,8 @@ Full details on the position angle fitting and classifications are detailed in t
 ## Neural Network Classifications
 With a large set of velocity fields and classifications, this is used to train a convolutional neural network (CNN). This can be used to quickly classify future galaxies in MaNGA. This may also be useful for classifying velocity fields in other surveys **but** further testing will need to be done (for example; MaNGA velocity fields tend to be hexagonal and classification biases may arise).
 
-### Pre-processing for CNN
-Here, velocity fields are also taken from the DAP, however, they are now standardised to be (32, 32) in shape, and, the pixel values range [-1, 1]. No other pre-processing is applied here. Examples of the CNN input (with human classifications) can be seen above. 
+### Pre-processing for NN
+Here, velocity fields are also taken from the DAP, however, they are now standardised to be (32, 32) in shape, and, the pixel values range [-1, 1]. No other pre-processing is applied here. Examples of the NN input (with human classifications) can be seen above. Here we combine the 1 (messy) and 2 (clean) classifications into a single category as there can be significant mixing between the two. All NN classifications are therefore a binary usability flag (0; don't use, 1; use).
 
 Both stellar and gas velocity fields are used together to create the following samples:
 
@@ -36,3 +36,16 @@ Both stellar and gas velocity fields are used together to create the following s
 | Validation | 2115 |
 
 ### Architecture
+Both convolutional and fully-connected neural networks are implemented here with > 85% classification accuracy. Due to the simplicity of the data (i.e. (32, 32) pixels), networks train quickly and can be prone to over-fitting after a small number of epochs. After hyperparameter [tuning](https://keras-team.github.io/keras-tuner/), the optimal network is fully connected with the following architecture of 3 hidden layers:
+![NN_diagram](./NN/final-model/FCN_layers.png)
+
+The second and third dense layers also have dropout (rate = 0.6) to prevent over-fitting, and the model is trained with an adaptive learning rate (η=0.001) that reduces on plateau (to a minimum of 0.00001) with an adam optimiser, for a total of 50 epochs. The model is trained with class weights due to the imbalance in unusable and usable classifications, and, augementation of the training data (random flips and rotations).
+
+### Performance
+The tuned network has an 88.8% accuracy (when dividing at output = 0.5) which steadily increases to 100% when selecting the model's most confident predictions. Confusion matrices shown for splits with 50%, 80% and 99% confidence are shown below:
+
+<p float="left">
+  <img src="./NN/final-model/confusion_0.5confidence.png" width="310" />
+  <img src="./NN/final-model/confusion_0.8confidence.png" width="310" /> 
+  <img src="./NN/final-model/confusion_0.99confidence.png" width="310" />
+</p>
