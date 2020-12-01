@@ -25,7 +25,7 @@ Full details on the position angle fitting and classifications are detailed in t
 With a large set of velocity fields and classifications, this is used to train a convolutional neural network (CNN). This can be used to quickly classify future galaxies in MaNGA. This may also be useful for classifying velocity fields in other surveys **but** further testing will need to be done (for example; MaNGA velocity fields tend to be hexagonal and classification biases may arise).
 
 ### Pre-processing for NN
-Here, velocity fields are also taken from the DAP, however, they are now standardised to be (32, 32) in shape, and, the pixel values range [-1, 1]. No other pre-processing is applied here. Examples of the NN input (with human classifications) can be seen above. Here we combine the 1 (messy) and 2 (clean) classifications into a single category as there can be significant mixing between the two. All NN classifications are therefore a binary usability flag (0; don't use, 1; use).
+Here, velocity fields are also taken from the DAP, however, they are now standardised to be (32, 32) in shape, and, the pixel values range [-1, 1]. Due to the variety of image resolutions in MaNGA (due to the different IFU sizes) we select all images to be set at the same lowest resolution. No other pre-processing is applied here. Examples of the NN input (with human classifications) can be seen above. Here we combine the 1 (messy) and 2 (clean) classifications into a single category as there can be significant mixing between the two. All NN classifications are therefore a binary usability flag (0; don't use, 1; use).
 
 Both stellar and gas velocity fields are used together to create the following samples:
 
@@ -40,6 +40,8 @@ Both convolutional and fully-connected neural networks are implemented here with
 ![NN_diagram](./NN/final-model/FCN_layers.png)
 
 The second and third dense layers also have dropout (rate = 0.6) to prevent over-fitting, and the model is trained with an adaptive learning rate (η=0.001) that reduces on plateau (to a minimum of 0.00001) with an adam optimiser, for a total of 50 epochs. The model is trained with class weights due to the imbalance in unusable and usable classifications, and, augementation of the training data (random flips and rotations).
+
+The final model can be found in this [directory](./NN/fit-model/) and usable through the keras model API. [Here](./NN/examples/example_classification.ipynb) is an example how you can pre-process a velocity field and generate a prediction. Note the NN requires formatting of (None, 32, 32, 1) for images.
 
 ### Performance
 The tuned network has an 88.8% accuracy (when dividing at output = 0.5) which steadily increases to 100% when selecting the model's most confident predictions. Confusion matrices shown for splits with 50%, 80% and 99% classification confidence are shown below:
