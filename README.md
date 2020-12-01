@@ -1,4 +1,4 @@
-![velfields](./CNN/pre-processing/example_classified_maps.png)
+![velfields](./NN/pre-processing/example_classified_maps.png)
 
 # kin_mis_classifications
 
